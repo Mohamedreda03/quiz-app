@@ -6,6 +6,7 @@ import StartScreen from "./components/StartScreen";
 import Questions from "./components/Questions";
 import Progress from "./components/Progress";
 import FinishScreen from "./components/FinishScreen";
+import data from "../data/questions.json";
 
 const initialState = {
   questions: [],
@@ -92,10 +93,23 @@ function App() {
   const totalPointes = questions.reduce((acc, cur) => cur.points + acc, 0);
 
   useEffect(() => {
-    fetch("http://localhost:8000/questions")
-      .then((res) => res.json())
-      .then((data) => dispatch({ type: "dataReceived", payload: data }))
+    // fetch("http://localhost:8000/questions")
+    //   .then((res) => res.json())
+    //   .then((data) => dispatch({ type: "dataReceived", payload: data }))
+    //   .catch((err) => dispatch({ type: "dataFailed" }));
+
+    const promise = new Promise((resolve, reject) => {
+      setTimeout(() => {
+        resolve(data);
+      }, 1000);
+    });
+    promise
+      .then((data) =>
+        dispatch({ type: "dataReceived", payload: data.questions })
+      )
       .catch((err) => dispatch({ type: "dataFailed" }));
+
+    // dispatch({ type: "dataReceived", payload: data });
   }, []);
   return (
     <div className="bg-gray-950 w-full h-screen text-white px-8">
