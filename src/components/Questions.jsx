@@ -19,7 +19,7 @@ export default function Questions({
             key={option}
             disabled={hasAnswered}
             onClick={() => dispatch({ type: "newAnswer", payload: i })}
-            className={`bg-slate-800 px-11 py-4 rounded-2xl text-start ${
+            className={`px-11 py-4 rounded-2xl text-start ${
               !hasAnswered && "hover:bg-slate-700"
             } transition ${
               hasAnswered && i === answer && "border-2 border-purple-600"
@@ -28,7 +28,7 @@ export default function Questions({
                 ? question.correctOption === i
                   ? "bg-green-600"
                   : "bg-red-600"
-                : ""
+                : "bg-slate-800"
             }`}
           >
             {option}

@@ -108,8 +108,6 @@ function App() {
         dispatch({ type: "dataReceived", payload: data.questions })
       )
       .catch((err) => dispatch({ type: "dataFailed" }));
-
-    // dispatch({ type: "dataReceived", payload: data });
   }, []);
   return (
     <div className="bg-gray-950 w-full h-screen text-white px-8">
